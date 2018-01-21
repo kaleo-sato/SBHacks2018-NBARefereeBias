@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width:auto;
+    }
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+</style>
     <body background="website/bball3.jpeg", style="background-position:center";/>
       <p style="font-size:60px; text-align:center;">Hacking NBA Referees!</p>
     <br>
@@ -135,7 +148,65 @@
     <br>
     <br>
     <br>
-  
+    
+    <br>
+    <div align="center" style="font-size:25px; width:1000px;  margin: 0 auto">
+        Using Machine Learning to predict whether the combination of referees and teams would lead to a discrepancy of more than 5 fouls between the home and visiting teams:
+        <ul style="list-style-type:disc; font-size:20px; text-align:center; margin: 0 auto">
+            <li>The motivation behind this problem was to identify whether certain referees would give more fouls to the away team based on the other referees and the teams playing. We set up the data by organizing the referees that assessed each game, which teams were playing each other, which team was home, and whether the home team received more than 5 less fouls than the away team. We decided to assume the referees and teams factors had independent probabilities as we didn't have a large enough dataset to encompass all the referee and team combinations. Under this assumption we applied a Naive Bayes Classifier to predict if a combination of referees and teams would lead to a "biased" game with respect to the fouls.</li>
+            <li>Using a 75%-25% training-test split we obtained the following results for our model:</li>
+        </ul>
+    </div>
+    <div style="font-size:25px;">
+      <h3 align=center>Results from training data</h3>
+    <table align=center>
+      <tr>
+        <th></th>
+        <th>True "Bias"</th>
+        <th>True No "Bias"</th>
+      </tr>
+      <tr>
+        <th>Predicted "Bias"</th>
+        <td style="background-color:#dddddd;">63</td>
+        <td>39</td>
+      </tr>
+      <tr>
+        <th>Predicted No "Bias"</th>
+        <td>39</td>
+        <td style="background-color:#dddddd;">353</td>
+      </tr>
+    </table>
+    <h3 align=center>Accuracy: 84.21%</h3>
+      </div>
+      <div style="font-size:25px;">
+      <h3 align=center>Results from test data</h3>
+    <table align=center>
+      <tr>
+        <th></th>
+        <th>True "Bias"</th>
+        <th>True No "Bias"</th>
+      </tr>
+      <tr>
+        <th>Predicted "Bias"</th>
+        <td style="background-color:#dddddd;">16</td>
+        <td>24</td>
+      </tr>
+      <tr>
+        <th>Predicted No "Bias"</th>
+        <td>24</td>
+        <td style="background-color:#dddddd;">123</td>
+      </tr>
+    </table>
+    <h3 align=center>Accuracy: 80.34%</h3>
+      </div>
+    <br>
+    <ul style="list-style-type:disc; font-size:20px; text-align:center; margin: 0 auto">
+            <li>The model is far from perfect, but it will correctly predict whether a certain combination of referees and teams will result in a bias related to number of fouls called about 4 out of 5 times. An interesting thing to note is that the model doesn't favor predicting "bias" over not "bias" as there is an equal amount of false positives as there are false negatives which means that the model is more complicated than just picking the most popular result.</li>
+            <li>Another interesting point is that most games don't result in more than a 5 foul discrepancy between the home and away teams. However, some games do and according to how well the model fits there does seem to be a relationship between a few referees and teams supporting the work of the above graphs.</li>
+    </ul>
+    <br>
+    <br>
+    <br>
   
   
 </html>
